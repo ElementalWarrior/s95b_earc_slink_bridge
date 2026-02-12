@@ -1,5 +1,15 @@
 # Overview
 
+I have an old Sony receiver that doesn't have HDMI inputs. Which is fine for me, I use the optical connection to get audio to the receiver. 
+
+The only drawback here is that I have to keep the Sony remote handy in order to change the volume. This project fixes that.
+
+Once the slink service is running, it will start a `cec-client` process, which registers the pi as an audio device with the TV. Then under the settings (gear icon), you can press up, and choose PI Bridge as the audio output. The python script will then translate the volume up, down and "middle press" inputs from the smart controller to the Sony via slink.
+
+You must have the "simultaneous optical" option checked under settings > audio > expert enabled to actually get audio in your receiver. The raspberry pi is not actually handling audio over hdmi.
+
+Also note that the mute button on the smart remote will not unmute. You have to press volume up to unmute.
+
 ```mermaid
 flowchart LR
     Remote -->|Volume up| Samsung_S95b -->|HDMI CEC| RaspberryPI -->|"S-link/Control A(ii)"| Sony_Audio_Receiver
